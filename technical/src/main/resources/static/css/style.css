@@ -7,7 +7,6 @@ body{
 		font-family:Arial;
 }
 table{
-	
 	margin:25px 0;
 	border-collapse:collapse;
 }
@@ -19,7 +18,7 @@ thead tr{
 	
 }
 tbody tr{
-		border-bottom: 1.5px solid #dddddd;
+	border-bottom: 1.5px solid #dddddd;
 }
 tbody tr:nth-of-type(even){
 	background-color:#f3f3f3;

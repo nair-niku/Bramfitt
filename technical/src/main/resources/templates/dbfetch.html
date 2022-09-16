@@ -23,7 +23,12 @@
                <td th:text="${tfl.TFLInfo}"></td>
                <td th:text="${tfl.date}"></td>
             </tr>
-         </tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+               <td th:text="${Exception}" style="text-align: center" colspan=3></td>
+            </tr>
+          </tfoot>
       </table>
    </div>
 </body>

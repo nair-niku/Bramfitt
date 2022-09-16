@@ -23,53 +23,79 @@ public class TFLController {
 	@Autowired
 	private TFLRepository tflRepository;
 	
+	
+	//Mapping the homepage
 	@GetMapping("/")
 	public String goHome() {
-		return "index";
+		return "index"; 					//redirects to index.html
 	}
 	
+	
+	//Mapping the call from api button
 	@GetMapping("/call") 
 	public String getTFLinfo(Model model) {
 		
-		String response = tflService.getTFLdata();
-		
-		if(!response.contains("Exception")) {
-		long id = tflRepository.count() + 1;
-		
-	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	    Date date = new Date();
-		
-		TFLInfo tflInfo = new TFLInfo(id, response,dateFormat.format(date));
-		tflRepository.insert(tflInfo);
-		model.addAttribute("tflInfo", tflInfo);
-		
-		//System.out.println(tflInfo);
-		return "call";
+		//put try-catch to catch connection issues for mongoDB repository
+		try {
+			String response = tflService.getTFLdata();
+			
+			/*If there is any exception in getting data from API, the response String will contain the Exception message. 
+			Hence the if condition searched whether response contains the word Exception. 
+			If Exception is not present, it will process normally, else it will load an error page*/
+			
+			if(!response.contains("Exception")) {
+				long id = tflRepository.count() + 1;
+				
+			    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			    Date date = new Date();
+				
+				TFLInfo tflInfo = new TFLInfo(id, response,dateFormat.format(date));
+				tflRepository.insert(tflInfo);
+				model.addAttribute("tflInfo", tflInfo);
+				
+				return "call";  				//redirects to call.html
+			}
+			else {
+				model.addAttribute("Exception", response);
+				return "error";  				//redirects to error.html
+			}
 		}
-		else {
-			model.addAttribute("Exception", response);
-			return "error";
+		catch(Exception e) {
+			model.addAttribute("Exception", e.toString());
+			return "error"; 
 		}
 	}
 	
 	@GetMapping("/dbfetch")
 	public String getDBfetch(Model model) {
 		
-		List<TFLInfo> tflList= tflService.getDBdata();
-		try{
-			if(!tflList.get(0).TFLInfo.contains("Exception")) {
-			model.addAttribute("tflList", tflList);
-			return "dbfetch";
+		//put try-catch to catch connection issues for mongoDB repository
+		try {
+			
+			//If repository has values, then display, else show No historic data available
+			if(tflRepository.count()>0) {	
+				List<TFLInfo> tflList= tflService.getDBdata();
+				
+				/*If String doesn't contain exception passed from Service, display data on dashboard
+				else show the Exception and redirect to error page*/
+				
+				if(!tflList.get(0).TFLInfo.contains("Exception")) {
+					model.addAttribute("tflList", tflList);
+					return "dbfetch";  			//redirects to dbfetch.html
+				}
+				else {
+					model.addAttribute("Exception", tflList.get(0).TFLInfo);
+					return "error";  			//redirects to error.html
+				}
 			}
 			else {
-				model.addAttribute("Exception", tflList.get(0).TFLInfo);
-				return "error";
+				model.addAttribute("dbfetcherror", "No Historic Data Available");
+				return "index"; 
 			}
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			model.addAttribute("Exception", e.toString());
-			return "error";
+			return "error"; 
 		}
 		
 	}

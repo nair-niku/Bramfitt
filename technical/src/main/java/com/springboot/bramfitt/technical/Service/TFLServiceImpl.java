@@ -24,11 +24,13 @@ public class TFLServiceImpl implements TFLService {
 	
 	@Override
 	public String getTFLdata() {
+		
+		/*Put a try-catch here to catch any error while fetching data from API 
+		such as incorrect API details*/
 		try {
-		result = restTemplate.getForObject("https://api.tfl.gov.uk/StopPoint/490009333W/arrivals", String.class);
+			result = restTemplate.getForObject("https://api.tfl.gov.uk/StopPoint/490009333W/arrivals", String.class);
 		}
 		catch(Exception e) {
-			System.out.println(e);
 			result = e.toString();
 		}
 		return result;
@@ -37,13 +39,16 @@ public class TFLServiceImpl implements TFLService {
 	
 	@Override
 	public List<TFLInfo> getDBdata(){
+		
+		/*Put a try-catch here to catch any error while fetching data from DB 
+		such as connection issues or incorrect credentials causing authorization to fail*/
 		try{
 			dbresponse= tflRepository.findAll();
 		}
 		catch(Exception e) {
-			System.out.println(e);
 			TFLInfo tflinfo = new TFLInfo(0, e.toString(), null);
 			dbresponse.add(0, tflinfo);
+			System.out.println(dbresponse);
 		}
 		return dbresponse;
 
