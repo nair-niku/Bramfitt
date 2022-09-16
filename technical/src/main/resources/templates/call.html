@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <link rel="stylesheet" type="text/css" href="/css/style.css" />
+   <meta charset="ISO-8859-1">
+   <title>Transport for London</title>
+</head>
+<body>
+   <div align='center'>
+      <h1>Transport for London : API Call</h1>
+      <h2><a class="clickMe" href="/" style="text-align: center"> Home </a></h2>
+      <table style="width: 100%">
+         <thead>
+            <tr>
+               <th style="width: 7%">TFL ID</th>
+               <th style="width: 82%">TFL Information</th>
+               <th style="width: 10%">TFL Date</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td th:text="${tflInfo.id}" style="text-align: center"></td>
+               <td th:text="${tflInfo.TFLInfo}" style="text-align: left"></td>
+               <td th:text="${tflInfo.date}" style="text-align: center"></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</body>
+</html>
