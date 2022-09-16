@@ -12,7 +12,7 @@ table{
 	border-collapse:collapse;
 }
 thead tr{
-	background-color:#009999;
+	background-color:#009879;
 	color:#ffffff;
 	text-align:center;
 	font-weight:bold;
@@ -25,7 +25,7 @@ tbody tr:nth-of-type(even){
 	background-color:#f3f3f3;
 } 
 tbody tr:last-of-type{
-	border-bottom: 2px solid #009999;
+	border-bottom: 2px solid #009879;
 	
 }
 th{
@@ -39,14 +39,14 @@ a.clickMe {
   position: absolute;
   top: -5px;
   right: 10px;
-  background: #009999;
+  background: #009879;
   color: white;
   padding: 5px 5px;
   cursor: pointer;
   text-decoration:none;
 }
 a{
-  background: #009999;
+  background: #009879;
   color: white;
   padding: 10px 5px;
   cursor: pointer;

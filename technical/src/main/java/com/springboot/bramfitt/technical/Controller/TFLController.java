@@ -55,10 +55,22 @@ public class TFLController {
 	@GetMapping("/dbfetch")
 	public String getDBfetch(Model model) {
 		
-		List<TFLInfo> tflList= tflRepository.findAll();
-		model.addAttribute("tflList", tflList);
-		
-		return "dbfetch";
+		List<TFLInfo> tflList= tflService.getDBdata();
+		try{
+			if(!tflList.get(0).TFLInfo.contains("Exception")) {
+			model.addAttribute("tflList", tflList);
+			return "dbfetch";
+			}
+			else {
+				model.addAttribute("Exception", tflList.get(0).TFLInfo);
+				return "error";
+			}
+		}
+		catch(Exception e)
+		{
+			model.addAttribute("Exception", e.toString());
+			return "error";
+		}
 		
 	}
 }
