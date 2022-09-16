@@ -26,3 +26,4 @@ The code is fairly easy to understand and comments have been added wherever it f
 
 If I had more time to code, I would have tried to come up with a better implemention for the try-catch condition rather than writing the exception data into 0th position of the list in TFLServiceImpl.java line 45 and TFLController.java line 65.
 Also I would have worked on improving the CSS styling in the HTML pages. Currently, the CSS I have written is a fairly commonly seen format.
+Also I would have simplified the Controller File.
