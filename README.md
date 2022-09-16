@@ -6,9 +6,9 @@ The DB is currently deleted and empty, so any API call will begin entry with ID=
 
 Steps to run this application in eclipse:
 1. Open git link https://github.com/nair-niku/Bramfitt in any browser and copy the clone URL.
-2. Open eclipse and open the Git Repositories window, click on "Clone a Git Repository". The copied URL will autofill this window and proceed to clone the repository.
+2. Open eclipse and open the Git Repositories window, click on "Clone a Git Repository". The copied URL will autofill this window and click on "Next/Finish" to proceed to clone the repository.
 3. In the repository, go to Working Tree and right-click to open menu, select "Import Projects.."
-4. Select the option "\technical" folder and import as "Maven", and select Finish.
+4. Select the option "\technical" folder and import as "Maven", and select "Finish".
 5. In the project, Run the file TechnicalApplication.java as a Java Application (location /technical/src/main/java/com/springboot/bramfitt/technical/TechnicalApplication.java)
 6. Open a browser and go to "http://localhost:8080/" url. This will run the Application.
 
